@@ -1,9 +1,11 @@
 package com.film.gallery.web.mapper;
 
 import com.film.gallery.service.command.CreateFilmCommand;
+import com.film.gallery.service.command.DeleteFilmCommand;
 import com.film.gallery.service.command.GetFilmCommand;
 import com.film.gallery.service.command.SearchFilmCommand;
 import com.film.gallery.service.command.UpdateFilmCommand;
+import com.film.gallery.web.FilmController.DeleteFilmRequest;
 import com.film.gallery.web.FilmController.GetFilmRequest;
 import com.film.gallery.web.FilmController.PostFilmRequest;
 import com.film.gallery.web.FilmController.PutFilmRequest;
@@ -30,6 +32,12 @@ public interface CommandMapper {
                 .id(source.id())
                 .caption(source.caption())
                 .description(source.description())
+                .build();
+    }
+
+    static DeleteFilmCommand mapToCommand(DeleteFilmRequest source) {
+        return DeleteFilmCommand.builder()
+                .id(source.id())
                 .build();
     }
 

@@ -17,32 +17,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * API methods
  * <p>
- * For single film items:
  * GET    /film/:id  - returns a specific film item based on :id parameter
  * POST   /film      - creates one film item
  * PUT    /film      - updates one film item
- * <p>
- * For multiple film items:
  * POST   /films/search - searches for one or many film items
  * DELETE /films        - deletes all the films
  */
-@RequestMapping("/api")
+@RequestMapping("/api/films")
 public interface FilmController {
 
-    @GetMapping("/film/{id}")
+    @GetMapping("/{id}")
     GetFilmResponse get(@Valid GetFilmRequest request);
 
-    @PostMapping("/film")
+    @PostMapping
     PostFilmResponse post(@RequestBody @Valid PostFilmRequest request);
 
-    @PutMapping("/film")
+    @PutMapping
     PutFilmResponse put(@RequestBody @Valid PutFilmRequest request);
+
+    @DeleteMapping("/{id}")
+    void delete(@Valid DeleteFilmRequest request);
 
     @PostMapping("/films/search")
     SearchFilmResponse search(@RequestBody @Valid SearchFilmRequest request);
-
-    @DeleteMapping("/films")
-    void deleteAll();
 
 
     /* Requests and Responses */
@@ -68,6 +65,10 @@ public interface FilmController {
 
     @Builder
     record PutFilmResponse(@NotNull String id, @NotBlank String caption, @NotBlank String description) {
+    }
+
+    @Builder
+    record DeleteFilmRequest(@NotNull String id) {
     }
 
     @Builder

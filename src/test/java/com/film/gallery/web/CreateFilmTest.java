@@ -24,14 +24,15 @@ public class CreateFilmTest extends AbstractIntegrationTest {
     @Test
     void givenNoFilmIsCreated_whenPostFilm_thenExpectResponse200Status() throws Exception {
         // given no film is created
+        String filmId = randomUUID().toString();
 
         // when
         var postFilmRequestBody = new PostFilmRequest(
-                randomUUID().toString(),
+                filmId,
                 "test caption",
                 "test description"
         );
-        var postFilmRequest = post("/api/film")
+        var postFilmRequest = post("/api/films")
                 .content(OBJECT_MAPPER.writeValueAsBytes(postFilmRequestBody))
                 .contentType(MediaType.APPLICATION_JSON);
         var postFilmResponse = this.mockMvc.perform(postFilmRequest).andDo(print());
@@ -47,14 +48,15 @@ public class CreateFilmTest extends AbstractIntegrationTest {
     @Test
     void givenNoFilmIsCreated_whenPostFilmWithoutId_thenExpectResponse200Status() throws Exception {
         // given no film is created
+        String filmId = null;
 
         // when
         var postFilmRequestBody = new PostFilmRequest(
-                null,
+                filmId,
                 "test caption",
                 "test description"
         );
-        var postFilmRequest = post("/api/film")
+        var postFilmRequest = post("/api/films")
                 .content(OBJECT_MAPPER.writeValueAsBytes(postFilmRequestBody))
                 .contentType(MediaType.APPLICATION_JSON);
         var postFilmResponse = this.mockMvc.perform(postFilmRequest).andDo(print());

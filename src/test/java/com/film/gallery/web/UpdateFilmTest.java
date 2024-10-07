@@ -33,7 +33,7 @@ public class UpdateFilmTest extends AbstractIntegrationTest {
         // when
         givenFilm.setCaption("updated caption");
         givenFilm.setDescription("updated description");
-        var putFilmRequest = put("/api/film")
+        var putFilmRequest = put("/api/films")
                 .content(OBJECT_MAPPER.writeValueAsBytes(new PutFilmRequest(
                         givenFilm.getId(),
                         givenFilm.getCaption(),

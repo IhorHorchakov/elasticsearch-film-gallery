@@ -4,6 +4,7 @@ import com.film.gallery.repo.FilmRepository;
 import com.film.gallery.repo.domain.FilmEntity;
 import com.film.gallery.service.FilmService;
 import com.film.gallery.service.command.CreateFilmCommand;
+import com.film.gallery.service.command.DeleteFilmCommand;
 import com.film.gallery.service.command.GetFilmCommand;
 import com.film.gallery.service.command.SearchFilmCommand;
 import com.film.gallery.service.command.UpdateFilmCommand;
@@ -47,6 +48,11 @@ public class FilmServiceImpl implements FilmService {
         entity.setCaption(command.caption());
         entity.setDescription(command.description());
         return entityToDtoConverter.convert(repository.save(entity));
+    }
+
+    @Override
+    public void delete(DeleteFilmCommand command) {
+        repository.deleteById(command.id());
     }
 
     @Override

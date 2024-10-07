@@ -29,7 +29,7 @@ public class GetFilmTest extends AbstractIntegrationTest {
         var givenFilm = filmService.create(createFilmCommand);
 
         // when
-        var getFilmRequest = get("/api/film/%s".formatted(givenFilm.getId()));
+        var getFilmRequest = get("/api/films/%s".formatted(givenFilm.getId()));
         var getFilmResponse = this.mockMvc.perform(getFilmRequest).andDo(print());
 
         // then
@@ -45,7 +45,7 @@ public class GetFilmTest extends AbstractIntegrationTest {
         // given no film created
 
         // when
-        var getFilmRequest = get("/api/film/%s".formatted(randomUUID().toString()));
+        var getFilmRequest = get("/api/films/%s".formatted(randomUUID().toString()));
         var getFilmResponse = this.mockMvc.perform(getFilmRequest).andDo(print());
 
         // then

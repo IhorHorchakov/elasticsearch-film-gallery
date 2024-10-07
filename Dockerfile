@@ -2,7 +2,7 @@
 FROM amazoncorretto:21
 
 # the JAR file path
-ARG JAR_FILE=target/film-gallery-*.jar
+ARG JAR_FILE=target/film-gallery.jar
 
 # Copy the JAR file from the build context into the Docker image
 COPY ${JAR_FILE} film-gallery.jar

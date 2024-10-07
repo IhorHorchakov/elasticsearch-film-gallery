@@ -32,12 +32,12 @@ public class FilmControllerImpl implements FilmController {
     }
 
     @Override
-    public SearchFilmResponse search(SearchFilmRequest request) {
-        return mapToSearchFilmResponse(filmService.search(mapToCommand(request)));
+    public void delete(DeleteFilmRequest request) {
+        filmService.delete(mapToCommand(request));
     }
 
     @Override
-    public void deleteAll() {
-        filmService.deleteAll();
+    public SearchFilmResponse search(SearchFilmRequest request) {
+        return mapToSearchFilmResponse(filmService.search(mapToCommand(request)));
     }
 }
