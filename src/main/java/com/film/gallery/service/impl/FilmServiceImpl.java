@@ -1,7 +1,7 @@
 package com.film.gallery.service.impl;
 
 import com.film.gallery.repo.FilmRepository;
-import com.film.gallery.repo.domain.FilmEntity;
+import com.film.gallery.repo.domain.FilmEntityDocument;
 import com.film.gallery.service.FilmService;
 import com.film.gallery.service.command.CreateFilmCommand;
 import com.film.gallery.service.command.DeleteFilmCommand;
@@ -34,7 +34,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public FilmDto create(CreateFilmCommand command) {
-        FilmEntity entity = new FilmEntity();
+        FilmEntityDocument entity = new FilmEntityDocument();
         entity.setId(ofNullable(command.id()).orElse(randomUUID().toString()));
         entity.setCaption(command.caption());
         entity.setDescription(command.description());
@@ -43,7 +43,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public FilmDto update(UpdateFilmCommand command) {
-        FilmEntity entity = repository.findById(command.id())
+        FilmEntityDocument entity = repository.findById(command.id())
                 .orElseThrow(() -> new FilmNotFoundException(command.id()));
         entity.setCaption(command.caption());
         entity.setDescription(command.description());
