@@ -12,6 +12,8 @@ import com.film.gallery.service.converter.FilmEntityToFilmDtoConverter;
 import com.film.gallery.service.dto.FilmDto;
 import com.film.gallery.service.exception.FilmNotFoundException;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.elasticsearch.NoSuchIndexException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -21,6 +23,7 @@ import static java.util.UUID.randomUUID;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class FilmServiceImpl implements FilmService {
     private final FilmRepository repository;
     private final FilmEntityToFilmDtoConverter entityToDtoConverter;
@@ -52,7 +55,11 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public void delete(DeleteFilmCommand command) {
-        repository.deleteById(command.id());
+        try {
+            repository.deleteById(command.id());
+        } catch (NoSuchIndexException exception) {
+           log.warn("Exception occurred: {}", exception, exception.getCause());
+        }
     }
 
     @Override
@@ -62,6 +69,10 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public void deleteAll() {
-        repository.deleteAll();
+        try {
+            repository.deleteAll();
+        } catch (NoSuchIndexException exception) {
+            log.warn("Exception occurred: {}", exception, exception.getCause());
+        }
     }
 }

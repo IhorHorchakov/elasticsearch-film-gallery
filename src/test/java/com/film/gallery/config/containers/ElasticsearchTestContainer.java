@@ -13,6 +13,8 @@ public class ElasticsearchTestContainer extends ElasticsearchContainer {
         super(DOCKER_ELASTIC);
         this.addFixedExposedPort(9200, 9200);
         this.addFixedExposedPort(9300, 9300);
+        this.withEnv("xpack.security.transport.ssl.enabled", "false");
+        this.withEnv("xpack.security.http.ssl.enabled", "false");
         this.addEnv(CLUSTER_NAME, ELASTIC_SEARCH);
     }
 }
