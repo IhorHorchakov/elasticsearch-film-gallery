@@ -6,6 +6,8 @@ import com.film.gallery.web.FilmController.PostFilmResponse;
 import com.film.gallery.web.FilmController.PutFilmResponse;
 import com.film.gallery.web.FilmController.SearchFilmResponse;
 
+import java.util.List;
+
 public interface ResponseMapper {
 
     static GetFilmResponse mapToGetFilmResponse(FilmDto source) {
@@ -16,9 +18,10 @@ public interface ResponseMapper {
                 .build();
     }
 
-    static SearchFilmResponse mapToSearchFilmResponse(Iterable<FilmDto> source) {
+    static SearchFilmResponse mapToSearchFilmResponse(List<FilmDto> source) {
         return SearchFilmResponse.builder()
                 .films(source)
+                .size(source.size())
                 .build();
     }
 

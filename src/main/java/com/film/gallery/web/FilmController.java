@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * API methods
  * <p>
@@ -38,7 +41,7 @@ public interface FilmController {
     @DeleteMapping("/{id}")
     void delete(@Valid DeleteFilmRequest request);
 
-    @PostMapping("/films/search")
+    @PostMapping("/search")
     SearchFilmResponse search(@RequestBody @Valid SearchFilmRequest request);
 
 
@@ -72,10 +75,10 @@ public interface FilmController {
     }
 
     @Builder
-    record SearchFilmRequest(@NotBlank String query, @Positive Integer maxItems) {
+    record SearchFilmRequest(@NotBlank String query) {
     }
 
     @Builder
-    record SearchFilmResponse(@NotNull Iterable<FilmDto> films) {
+    record SearchFilmResponse(@NotNull List<FilmDto> films, @NotNull Integer size) {
     }
 }

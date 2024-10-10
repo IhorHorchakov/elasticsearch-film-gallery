@@ -1,0 +1,52 @@
+[
+  {
+    "id": "cb3de82c-d623-44a7-b3f9-1e5cb3b5a3c7",
+    "caption": "The Shawshank Redemption",
+    "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+  },
+  {
+    "id": "1073bf4f-7510-4a1f-bf23-df869860b0a9",
+    "caption": "The Godfather",
+    "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+  },
+  {
+    "id": "c6487681-0385-4c52-bf7b-32f763123101",
+    "caption": "The Dark Knight",
+    "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+  },
+  {
+    "id": "28b543c7-7006-4f2c-9ca8-498f7921a34f",
+    "caption": "Pulp Fiction",
+    "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+  },
+  {
+    "id": "4dfc2c6e-0f02-4faa-a76e-dec6909c0a65",
+    "caption": "Schindler's List",
+    "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."
+  },
+  {
+    "id": "d483a095-b0c0-4f36-b2e0-bfe662bc35ea",
+    "caption": "Forrest Gump",
+    "description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart."
+  },
+  {
+    "id": "b20c8603-d311-4b6f-bf12-581f4238619a",
+    "caption": "Fight Club",
+    "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more."
+  },
+  {
+    "id": "c13b4712-ceb4-4e0e-a512-df7b5f5b1ae7",
+    "caption": "Inception",
+    "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO."
+  },
+  {
+    "id": "7c9773a3-4025-44e5-8296-9d34de172250",
+    "caption": "The Matrix",
+    "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers."
+  },
+  {
+    "id": "12d634bd-a275-4d39-9b02-4d1885de620d",
+    "caption": "The Silence of the Lambs",
+    "description": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims."
+  }
+]

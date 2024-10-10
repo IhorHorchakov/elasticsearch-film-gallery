@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.elasticsearch.NoSuchIndexException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.List;
 
 import static java.util.Optional.ofNullable;
 import static java.util.UUID.randomUUID;
@@ -63,8 +63,8 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public Iterable<FilmDto> search(SearchFilmCommand command) {
-        return Collections.emptyList();
+    public List<FilmDto> search(SearchFilmCommand command) {
+        return entityToDtoConverter.convert(repository.searchByCaptionAndDescription(command.query()));
     }
 
     @Override
