@@ -37,21 +37,49 @@ public class SearchFilmTest extends AbstractIntegrationTest {
     }
 
     @Test
-    void givenFilmsPopulated_whenSearchByEmptyQuery_thenReturn500Response() throws Exception {
+    void givenFilmsPopulated_whenSearchByPhrase_thenReturn200ResponseWith5Films() throws Exception {
         // given
-        String query = "";
+        String query = "insomniac office worker in german-occupied Vietnam";
 
         // when
         var searchFilmRequestBody = new SearchFilmRequest(query);
         var searchFilmRequest = post("/api/films/search")
                 .content(OBJECT_MAPPER.writeValueAsBytes(searchFilmRequestBody))
                 .contentType(MediaType.APPLICATION_JSON);
-        var searchFilmResponse = this.mockMvc.perform(searchFilmRequest)
+        var postFilmResponse = this.mockMvc.perform(searchFilmRequest)
                 .andDo(print());
 
         // then
-        searchFilmResponse
-                .andExpect(status().isInternalServerError());
+        postFilmResponse
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size", is(5)))
+                .andExpect(jsonPath("$.films[0].caption", is("Fight Club")))
+                .andExpect(jsonPath("$.films[1].caption", is("Schindler's List")))
+                .andExpect(jsonPath("$.films[2].caption", is("Forrest Gump")))
+                .andExpect(jsonPath("$.films[3].caption", is("The Matrix")))
+                .andExpect(jsonPath("$.films[4].caption", is("Pulp Fiction")));
+    }
+
+    @Test
+    void givenFilmsPopulated_whenSearchByPhraseInDescription_thenReturn200ResponseWith3Films() throws Exception {
+        // given
+        String query = "war";
+
+        // when
+        var searchFilmRequestBody = new SearchFilmRequest(query);
+        var searchFilmRequest = post("/api/films/search")
+                .content(OBJECT_MAPPER.writeValueAsBytes(searchFilmRequestBody))
+                .contentType(MediaType.APPLICATION_JSON);
+        var postFilmResponse = this.mockMvc.perform(searchFilmRequest)
+                .andDo(print());
+
+        // then
+        postFilmResponse
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size", is(3)))
+                .andExpect(jsonPath("$.films[0].caption", is("The Matrix")))
+                .andExpect(jsonPath("$.films[1].caption", is("Schindler's List")))
+                .andExpect(jsonPath("$.films[2].caption", is("Forrest Gump")));
     }
 
     @Test
@@ -95,25 +123,21 @@ public class SearchFilmTest extends AbstractIntegrationTest {
     }
 
     @Test
-    void givenFilmsPopulated_whenSearchByPhraseInDescription_thenReturn200ResponseWith3Films() throws Exception {
+    void givenFilmsPopulated_whenSearchByEmptyQuery_thenReturn500Response() throws Exception {
         // given
-        String query = "war";
+        String query = "";
 
         // when
         var searchFilmRequestBody = new SearchFilmRequest(query);
         var searchFilmRequest = post("/api/films/search")
                 .content(OBJECT_MAPPER.writeValueAsBytes(searchFilmRequestBody))
                 .contentType(MediaType.APPLICATION_JSON);
-        var postFilmResponse = this.mockMvc.perform(searchFilmRequest)
+        var searchFilmResponse = this.mockMvc.perform(searchFilmRequest)
                 .andDo(print());
 
         // then
-        postFilmResponse
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.size", is(3)))
-                .andExpect(jsonPath("$.films[0].caption", is("The Matrix")))
-                .andExpect(jsonPath("$.films[1].caption", is("Schindler's List")))
-                .andExpect(jsonPath("$.films[2].caption", is("Forrest Gump")));
+        searchFilmResponse
+                .andExpect(status().isInternalServerError());
     }
 
     public void populateFilms(String filePath) throws Exception {
