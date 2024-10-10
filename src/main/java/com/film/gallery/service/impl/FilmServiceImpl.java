@@ -31,7 +31,7 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public FilmDto get(GetFilmCommand command) {
         return repository.findById(command.id())
-                .map(entityToDtoConverter::convert)
+                .map(entityToDtoConverter::toDto)
                 .orElseThrow(() -> new FilmNotFoundException(command.id()));
     }
 
@@ -41,7 +41,7 @@ public class FilmServiceImpl implements FilmService {
         entity.setId(ofNullable(command.id()).orElse(randomUUID().toString()));
         entity.setCaption(command.caption());
         entity.setDescription(command.description());
-        return entityToDtoConverter.convert(repository.save(entity));
+        return entityToDtoConverter.toDto(repository.save(entity));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class FilmServiceImpl implements FilmService {
                 .orElseThrow(() -> new FilmNotFoundException(command.id()));
         entity.setCaption(command.caption());
         entity.setDescription(command.description());
-        return entityToDtoConverter.convert(repository.save(entity));
+        return entityToDtoConverter.toDto(repository.save(entity));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public List<FilmDto> search(SearchFilmCommand command) {
-        return entityToDtoConverter.convert(repository.searchByCaptionAndDescription(command.query()));
+        return entityToDtoConverter.toPageDto(repository.searchByCaptionAndDescription(command.query()));
     }
 
     @Override
