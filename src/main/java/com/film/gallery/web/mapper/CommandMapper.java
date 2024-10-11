@@ -44,6 +44,7 @@ public interface CommandMapper {
     static SearchFilmCommand mapToCommand(SearchFilmRequest source) {
         return SearchFilmCommand.builder()
                 .query(source.query())
+                .paginated(source.paginated())
                 .build();
     }
 }

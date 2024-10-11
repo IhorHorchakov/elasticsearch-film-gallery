@@ -1,12 +1,11 @@
 package com.film.gallery.web.mapper;
 
 import com.film.gallery.service.dto.FilmDto;
+import com.film.gallery.service.dto.PageDto;
 import com.film.gallery.web.FilmController.GetFilmResponse;
 import com.film.gallery.web.FilmController.PostFilmResponse;
 import com.film.gallery.web.FilmController.PutFilmResponse;
 import com.film.gallery.web.FilmController.SearchFilmResponse;
-
-import java.util.List;
 
 public interface ResponseMapper {
 
@@ -18,10 +17,13 @@ public interface ResponseMapper {
                 .build();
     }
 
-    static SearchFilmResponse mapToSearchFilmResponse(List<FilmDto> source) {
+    static SearchFilmResponse mapToSearchFilmResponse(PageDto<FilmDto> page) {
         return SearchFilmResponse.builder()
-                .films(source)
-                .size(source.size())
+                .films(page.getElements())
+                .filmsSize(page.getElementsSize())
+                .filmsTotal(page.getElementsTotal())
+                .pageNumber(page.getPageNumber())
+                .pagesTotal(page.getPagesTotal())
                 .build();
     }
 

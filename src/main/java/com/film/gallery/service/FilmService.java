@@ -6,6 +6,7 @@ import com.film.gallery.service.command.GetFilmCommand;
 import com.film.gallery.service.command.SearchFilmCommand;
 import com.film.gallery.service.command.UpdateFilmCommand;
 import com.film.gallery.service.dto.FilmDto;
+import com.film.gallery.service.dto.PageDto;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface FilmService {
     FilmDto update(UpdateFilmCommand command);
     void delete(DeleteFilmCommand command);
     void deleteAll();
-    List<FilmDto> search(SearchFilmCommand command);
+    PageDto<FilmDto> search(SearchFilmCommand command);
 }

@@ -2,12 +2,10 @@ package com.film.gallery.repo;
 
 import com.film.gallery.repo.domain.FilmEntityDocument;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface FilmRepository extends ElasticsearchRepository<FilmEntityDocument, String> {
@@ -20,5 +18,5 @@ public interface FilmRepository extends ElasticsearchRepository<FilmEntityDocume
               }
             }
     """)
-    List<FilmEntityDocument> searchByCaptionAndDescription(String query);
+    Page<FilmEntityDocument> search(String query, Pageable pageable);
 }
